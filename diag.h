@@ -9,4 +9,4 @@ extern void countNodesDiag(Tree *graph);
 extern bool diagnostic(int argc, char **argv);
 
 
-#endif
+#endif /*DIAG_H*/

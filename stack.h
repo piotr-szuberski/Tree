@@ -13,4 +13,4 @@ extern int pop(StackT **stack);
 
 extern void removeStack(StackT **stack);
 
-#endif
+#endif /*STACK_H*/

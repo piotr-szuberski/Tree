@@ -14,21 +14,21 @@ extern bool readInput(int *inputNode, int *leftBrother, int *command) {
         exit(1);
     }
 
-    order[ARRAY_ZERO] = MINUS_ONE;
-    order[WHICH_DELETE] = MINUS_ONE;
+    order[0] = -1;
+    order[WHICH_TO_DELETE] = -1;
     getline(&order, &max_size, stdin);
 
-    switch (order[ARRAY_ZERO]) {
+    switch (order[0]) {
         case DO_ADD:
             *command = ADD_NODE;
             sscanf(order, "ADD_NODE %d", inputNode);
             break;
         case DO_DELETE:
-            if (order[WHICH_DELETE] == DO_DELETE_NODE) {
+            if (order[WHICH_TO_DELETE] == DO_DELETE_NODE) {
                 *command = DELETE_NODE;
                 sscanf(order, "DELETE_NODE %d", inputNode);
             }
-            else if (order[WHICH_DELETE] == DO_DELETE_SUBTREE) {
+            else if (order[WHICH_TO_DELETE] == DO_DELETE_SUBTREE) {
                 *command = DELETE_SUBTREE;
                 sscanf(order, "DELETE_SUBTREE %d", inputNode);
             }

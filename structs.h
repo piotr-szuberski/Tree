@@ -1,7 +1,6 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
 
-
 struct Node;
 
 typedef struct Node* Tree;
@@ -28,5 +27,4 @@ struct Stack {
 
 typedef struct Stack StackT;
 
-#endif
-
+#endif /*STRUCTS_H*/

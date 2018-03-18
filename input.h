@@ -3,4 +3,4 @@
 
 extern bool readInput(int *inputNode, int *leftBrother, int *command);
 
-#endif
+#endif /*INPUT_H*/

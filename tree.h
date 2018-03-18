@@ -18,4 +18,4 @@ extern void deleteSubTree(Tree toUtilization, Tree *father, Tree *graph);
 
 extern void splitNode(Tree *toAdd, Tree *father, List leftBrother);
 
-#endif
+#endif /*TREE_H*/

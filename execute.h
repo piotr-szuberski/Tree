@@ -7,4 +7,4 @@ extern Tree *arrayDoubleExpansion(Tree *array, int *arraySize);
 
 extern void execute(bool diagnose);
 
-#endif
+#endif /*EXECUTE_H*/

@@ -5,21 +5,23 @@
 #include "consts.h"
 #include "structs.h"
 
+/*Checks flags added to the program (only one flag = "-v"
+ *or no flags allowed). Flag "-g" allows the diagnostic mode.
+ */
 extern bool diagnostic(int argc, char **argv) {
     bool diagnose;
-    if (argc == NO_FLAG) {
+    if (argc == 1) {
         diagnose = false;
     }
-    else if (argc > FLAG) {
+    else if (argc > FLAGS_NUMBER + 1) {
         printf("ERROR - TOO MANY FLAGS\n");
         exit(1);
     }
     else {
-        char *paramString = (char*) malloc((strlen(argv[1]) + 1)
-            * sizeof(char));
+        char *paramString =
+            (char*) malloc( (strlen(argv[1]) + 1) * sizeof(char));
         strcpy(paramString, argv[1]);
-        if (((strlen(argv[1]) + 1) == FLAG_LENGTH) &&
-            (paramString[0] == '-') && (paramString[1] == 'v')) {
+        if (FLAG1_CONDITION) {
             diagnose = true;
         }
         else {
@@ -31,6 +33,7 @@ extern bool diagnostic(int argc, char **argv) {
     return diagnose;
 }
 
+/* Counts all the nodes in the tree */
 extern void countNodesDiag(Tree *graph) {
     List helper;
     int nodes = 0;
@@ -38,7 +41,7 @@ extern void countNodesDiag(Tree *graph) {
     StackT *s;
 
     initStack(&s);
-    push(&s, graph[ARRAY_ZERO]->number);
+    push(&s, graph[0]->number);
     while (!isEmpty(s)) {
         stackCounter = pop(&s);
         nodes++;

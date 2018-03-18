@@ -4,9 +4,10 @@
 #include "consts.h"
 #include "structs.h"
 
+/* The function copies the array and creates an extended one */
 extern Tree* arrayDoubleExpansion(Tree *array, int *arraySize) {
     int i;
-    int newArraySize = DOUBLE*(*arraySize);
+    int newArraySize = 2 * (*arraySize);
 
     Tree *newArray = (Tree*) malloc(sizeof(Tree) * newArraySize);
     if (newArray == NULL) {
@@ -14,7 +15,7 @@ extern Tree* arrayDoubleExpansion(Tree *array, int *arraySize) {
         exit(1);
     }
 
-    for (i = ZERO; i < *arraySize; ++i) {
+    for (i = 0; i < *arraySize; ++i) {
         newArray[i] = array[i];
     }
 
@@ -24,16 +25,19 @@ extern Tree* arrayDoubleExpansion(Tree *array, int *arraySize) {
     return newArray;
 }
 
+/* The most important function that links all others - reads the input
+ * and interpretes it
+ */
 extern void execute(bool diagnose) {
-    Tree *graph = (Tree*) malloc(sizeof(Tree) * START_ARRAY_LENGTH);
+    Tree *graph = (Tree*) malloc(sizeof(Tree));
     Tree toAdd, inputNode;
     List leftBrotherPoint;
-    int arrayLength = START_ARRAY_LENGTH;
-    int counter = COUNTER_START;
+    int arrayLength = 1;
+    int counter = 1;
     int inputValue, leftBrother, command;
 
-    inputValue = leftBrother = command = NON_EXISTING_NODE;
-    createNode(ZERO, FATHER_ZERO, &graph[ARRAY_ZERO]);
+    inputValue = leftBrother = command = -1;
+    createNode(0, -1, &graph[0]);
 
     while (readInput(&inputValue, &leftBrother, &command)) {
         inputNode = graph[inputValue];
@@ -72,6 +76,6 @@ extern void execute(bool diagnose) {
 
     }
 
-    deleteTree(graph[ARRAY_ZERO], graph);
+    deleteTree(graph[0], graph);
     free(graph);
 }

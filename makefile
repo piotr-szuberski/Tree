@@ -1,6 +1,8 @@
+objects=tree.o diag.o execute.o solution.o input.o stack.o
+objectsdbg=tree.dbg diag.dbg execute.dbg solution.dbg input.dbg stack.dbg
 all: solution
-solution: tree.o diag.o execute.o solution.o input.o stack.o
-	gcc -pedantic -std=c99 -o solution tree.o diag.o execute.o stack.o solution.o input.o
+solution: $(objects)
+	gcc -pedantic -std=c99 -o solution $(objects)
 
 tree.o: tree.c consts.h structs.h
 	gcc -c tree.c
@@ -16,8 +18,8 @@ stack.o: stack.c consts.h structs.h
 	gcc -c stack.c
 
 debug: solutiondbg
-solutiondbg: tree.dbg diag.dbg execute.dbg solution.dbg input.dbg stack.dbg
-	gcc -g -pedantic -std=c99 -Wall -Werror -o solution.dbg tree.o diag.o execute.o stack.o solution.o input.o
+solutiondbg: $(objectsdbg)
+	gcc -g -pedantic -std=c99 -Wall -Werror -Wextra -o solution.dbg $(objects)
 
 tree.dbg: tree.c consts.h structs.h
 	gcc -g -c tree.c
@@ -34,11 +36,11 @@ solution.dbg: solution.c execute.h diag.h
 
 
 clean:
-	rm tree.o
-	rm stack.o
-	rm execute.o
-	rm solution.o
-	rm diag.o
-	rm input.o
-	rm solution
-	rm solution.dbg
+	@rm tree.o
+	@rm stack.o
+	@rm execute.o
+	@rm solution.o
+	@rm diag.o
+	@rm input.o
+	@rm solution
+	@rm solution.dbg

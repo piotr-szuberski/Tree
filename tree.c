@@ -4,7 +4,6 @@
 #include "consts.h"
 #include "structs.h"
 
-
 extern void createNode(int nodeNumber, int fatherNumber, Tree *new) {
     List newHimself = (List) malloc(sizeof(struct Cube));
 
@@ -47,6 +46,7 @@ extern void rightmostChild(List rightest) {
     }
 }
 
+/* Deletes a node and changes father numbers of its childs */
 extern void deleteNode(Tree child, Tree *father) {
     List forwardFather = child->himself->next;
     List backFather = child->himself->prev;
@@ -141,6 +141,10 @@ extern void deleteSubTree(Tree toUtilization, Tree *father, Tree *graph) {
     printf("OK\n");
 }
 
+
+/* Function adds a node to the right of its leftBrother and
+ * makes all the nodes to the right of leftBrother its childs
+ */
 extern void splitNode(Tree *toAdd, Tree *father, List leftBrother) {
     if ((*father)->rightest == leftBrother) {
         (*toAdd)->himself->next = (*father)->rightest;
